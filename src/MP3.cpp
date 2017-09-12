@@ -1,4 +1,4 @@
-#include "audiotag/MP3.hpp"
+#include <audiotag/MP3.hpp>
 
 #include <taglib/id3v2tag.h>
 
@@ -18,6 +18,17 @@ MP3::MP3(Tag* _tag)
     year    = tag->year();
     track   = tag->track();
   }
+}
+
+void MP3::replace(Tag* other)
+{
+  tag->setTitle(other->title());
+  tag->setArtist(other->artist());
+  tag->setAlbum(other->album());
+  tag->setComment(other->comment());
+  tag->setGenre(other->genre());
+  tag->setYear(other->year());
+  tag->setTrack(other->track());
 }
 
 std::string MP3::metaInString()

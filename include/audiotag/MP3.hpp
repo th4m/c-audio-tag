@@ -20,5 +20,6 @@ private:
 
 public:
   MP3(Tag*);
+  void replace(Tag*);
   std::string metaInString();
 };

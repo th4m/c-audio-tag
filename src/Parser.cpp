@@ -1,17 +1,15 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <sstream>
 #include <fstream>
 
 #include <taglib/id3v2tag.h>
+
+#include <audiotag/Parser.hpp>
 
 using namespace TagLib::ID3v2;
 
 // Helper functions
 
-std::string trim (std::string str)
+std::string Parser::trim (std::string str)
 {
   size_t first = str.find_first_not_of(' ');
   size_t last = str.find_last_not_of(' ');
@@ -19,15 +17,16 @@ std::string trim (std::string str)
   return str.substr(first, last - first + 1);
 }
 
-bool contains (std::string str, std::string fnd)
+bool Parser::contains (std::string str, std::string fnd)
 {
   return str.find(fnd) != std::string::npos;
 }
 
 
 // Parse strings in file to tag
-Tag* readFile (std::ifstream file)
+Tag* Parser::fileToTag (std::string filename)
 {
+  std::ifstream file(filename);
   std::string line;
   Tag * tag = new Tag();
   while (std::getline(file, line))
