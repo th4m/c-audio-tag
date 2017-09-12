@@ -1,4 +1,4 @@
-#include "MP3.hpp"
+#include "audiotag/MP3.hpp"
 
 #include <taglib/id3v2tag.h>
 
